@@ -9,7 +9,7 @@ import android.view.animation.AnimationUtils
 class MainActivity : AppCompatActivity() {
 
     //variables
-
+    val animation =
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
