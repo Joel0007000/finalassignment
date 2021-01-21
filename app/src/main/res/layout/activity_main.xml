@@ -9,7 +9,7 @@
     android:background="#fece2f">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imglogo"
         android:layout_width="351dp"
         android:layout_height="401dp"
         android:layout_marginStart="10dp"
@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/tvheading"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -34,11 +34,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/imglogo"
         android:gravity="center_horizontal" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/tvsentence"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
@@ -47,7 +47,7 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/tvheading" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
