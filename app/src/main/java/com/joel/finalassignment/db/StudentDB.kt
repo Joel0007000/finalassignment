@@ -9,7 +9,7 @@ import com.joel.finalassignment.entity.User
 
 @Database(
         entities = [(User::class)],
-        version = 1
+        version = 2
 )
 
 abstract class StudentDB : RoomDatabase(){
@@ -34,7 +34,7 @@ abstract class StudentDB : RoomDatabase(){
                         context.applicationContext,
                         StudentDB::class.java,
                         "ClothingDB"
-                ).build()
+                ).fallbackToDestructiveMigration().build()
     }
 
 }
