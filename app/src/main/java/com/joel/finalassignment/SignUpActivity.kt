@@ -48,23 +48,23 @@ class SignUpActivity : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java )
             startActivity(intent)
 
+            val fname = fname.text.toString()
+            val username = username.text.toString()
+            val email = email.text.toString()
+            val phoneNo = phoneNo.text.toString()
+            val password = password.text.toString()
+
+            //code to insert in db
+            val user = User(fname,username,email, phoneNo,password)
+            CoroutineScope(Dispatchers.IO).launch {
+                StudentDB.getInstance(this@SignUpActivity)!!.getUserDAO()
+                        .userSignUp(user)
+
+                withContext(Main) {
+                    Toast.makeText(this@SignUpActivity, "User Saved", Toast.LENGTH_SHORT).show()
+                }
+
         }
-
-        val fname = fname.text.toString()
-        val username = username.text.toString()
-        val email = email.text.toString()
-        val phoneNo = phoneNo.text.toString()
-        val password = password.text.toString()
-
-        //code to insert in db
-        val user = User(fname,username,email, phoneNo,password)
-        CoroutineScope(Dispatchers.IO).launch {
-            StudentDB.getInstance(this@SignUpActivity)!!.getUserDAO()
-                    .userSignUp(user)
-
-            withContext(Main) {
-                Toast.makeText(this@SignUpActivity, "User Saved", Toast.LENGTH_SHORT).show()
-            }
         }
     }
 }
