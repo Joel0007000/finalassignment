@@ -39,10 +39,7 @@ class SignUpActivity : AppCompatActivity() {
         phoneNo = findViewById(R.id.phoneNo)
         password = findViewById(R.id.password)
 
-        btn_Have_an_account.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-        }
+
 
         btn_SignUpGO.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java )
@@ -60,6 +57,9 @@ class SignUpActivity : AppCompatActivity() {
                 StudentDB.getInstance(this@SignUpActivity)!!.getUserDAO()
                         .userSignUp(user)
 
+                withContext(Main) {
+                    Toast.makeText(this@SignUpActivity, "User Saved", Toast.LENGTH_SHORT).show()
+                }
 
         }
         }
