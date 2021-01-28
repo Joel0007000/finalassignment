@@ -44,9 +44,7 @@ class SignUpActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        btn_SignUpGO.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java )
-            startActivity(intent)
+
 
             val fname = fname.text.toString()
             val username = username.text.toString()
