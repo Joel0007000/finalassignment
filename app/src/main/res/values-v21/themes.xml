@@ -14,7 +14,7 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
 
+        // enable window content transition
         <item name="android:windowContentTransitions">true</item>
-
     </style>
 </resources>

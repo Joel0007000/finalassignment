@@ -1,4 +1,4 @@
-package com.joel.finalassignment
+package com.joel.finalassignment.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
@@ -6,7 +6,8 @@ import com.joel.finalassignment.entity.User
 
 @Dao
 interface UserDAO {
-    // insert user
+
+    //insert user
     @Insert
-    suspend fun registerUser(user:User)
+    suspend fun userSignUp (user: User)
 }

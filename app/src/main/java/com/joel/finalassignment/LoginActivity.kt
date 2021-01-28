@@ -7,7 +7,10 @@ import android.view.WindowManager
 import android.widget.Button
 
 class LoginActivity : AppCompatActivity() {
-    private lateinit var btn_SignUp: Button
+
+    private lateinit var btn_newRegister: Button
+    private lateinit var btn_loginGo: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(
@@ -15,11 +18,17 @@ class LoginActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_login)
 
-        btn_SignUp = findViewById(R.id.btn_SignUp)
+        btn_newRegister = findViewById(R.id.btn_newRegister)
+        btn_loginGo = findViewById(R.id.btn_loginGo)
 
-        btn_SignUp.setOnClickListener {
+        btn_newRegister.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
+            }
+        btn_loginGo.setOnClickListener{
+            val intent = Intent(this, DashboardActivity::class.java)
+            startActivity(intent)
+
         }
     }
 }
