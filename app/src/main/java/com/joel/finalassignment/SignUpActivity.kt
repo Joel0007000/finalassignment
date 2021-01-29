@@ -57,7 +57,7 @@ class SignUpActivity : AppCompatActivity() {
                 StudentDB.getInstance(this@SignUpActivity)!!.getUserDAO()
                         .userSignUp(user)
 
-
+              
 
         }
         }
