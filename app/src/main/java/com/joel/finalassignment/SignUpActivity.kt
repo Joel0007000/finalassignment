@@ -57,7 +57,9 @@ class SignUpActivity : AppCompatActivity() {
                 StudentDB.getInstance(this@SignUpActivity)!!.getUserDAO()
                         .userSignUp(user)
 
-
+                withContext(Main) {
+                    Toast.makeText(this@SignUpActivity, "User Saved", Toast.LENGTH_SHORT).show()
+                }
 
         }
         }

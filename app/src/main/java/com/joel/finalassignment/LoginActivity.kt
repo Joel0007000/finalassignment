@@ -34,10 +34,7 @@ class LoginActivity : AppCompatActivity() {
         username = findViewById(R.id.username)
         password = findViewById(R.id.password)
 
-        btn_newRegister.setOnClickListener {
-            val intent = Intent(this, SignUpActivity::class.java)
-            startActivity(intent)
-            }
+
         btn_loginGo.setOnClickListener{
 
             CoroutineScope(Dispatchers.IO).launch {
