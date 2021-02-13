@@ -9,11 +9,14 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.google.android.material.textfield.TextInputEditText
+import com.joel.finalassignment.api_entity.UserTable
 import com.joel.finalassignment.db.StudentDB
 import com.joel.finalassignment.entity.User
+import com.joel.finalassignment.repository.UserRepository
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.Main
-
+import java.lang.Exception
+@Suppress("DEPRECATION")
 class SignUpActivity : AppCompatActivity() {
 
     private lateinit var btn_Have_an_account: Button
@@ -42,8 +45,7 @@ class SignUpActivity : AppCompatActivity() {
 
 
         btn_SignUpGO.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java )
-            startActivity(intent)
+
 
             val fname = fname.text.toString()
             val username = username.text.toString()
@@ -52,14 +54,38 @@ class SignUpActivity : AppCompatActivity() {
             val password = password.text.toString()
 
             //code to insert in db
-            val user = User(fname,username,email, phoneNo,password)
+            val user = UserTable(fullName = fname,email = email,userName = username,phone = phoneNo,password = password)
             CoroutineScope(Dispatchers.IO).launch {
-                StudentDB.getInstance(this@SignUpActivity)!!.getUserDAO()
-                        .userSignUp(user)
+                try {
+                    val userRepository = UserRepository()
+                    val response = userRepository.registerUser(user)
+                    if(response.success == true)
+                    {
+                        withContext(Main)
+                        {
+                            Toast.makeText(this@SignUpActivity, "${response.message}", Toast.LENGTH_SHORT).show()
+                            val intent = Intent(this@SignUpActivity, LoginActivity::class.java )
+                            startActivity(intent)
+                        }
 
-                withContext(Main) {
-                    Toast.makeText(this@SignUpActivity, "User Saved", Toast.LENGTH_SHORT).show()
+                    }
+                    else
+                    {
+                        withContext(Main)
+                        {
+                            Toast.makeText(this@SignUpActivity, "${response.message}", Toast.LENGTH_SHORT).show()
+                        }
+                    }
                 }
+                catch (err:Exception)
+                {
+                    withContext(Main)
+                    {
+                        Toast.makeText(this@SignUpActivity, "${err}", Toast.LENGTH_SHORT).show()
+
+                    }
+                }
+
 
         }
         }
