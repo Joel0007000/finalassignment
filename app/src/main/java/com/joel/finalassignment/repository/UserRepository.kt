@@ -15,7 +15,7 @@ class UserRepository():APIRequest() {
         }
     }
 
-    suspend fun loginUser(username:String,password:String):ServerResponse
+    suspend fun loginUser(username:String,password:String):LoginResponse
     {
         return apiRequest {
 

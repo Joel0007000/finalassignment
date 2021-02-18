@@ -22,10 +22,10 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var btn_Have_an_account: Button
     private lateinit var btn_SignUpGO: Button
 
-    private lateinit var fname: TextInputEditText
+    private lateinit var fullname: TextInputEditText
     private lateinit var username: TextInputEditText
     private lateinit var email: TextInputEditText
-    private lateinit var phoneNo: TextInputEditText
+    private lateinit var phone: TextInputEditText
     private lateinit var password: TextInputEditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,10 +36,10 @@ class SignUpActivity : AppCompatActivity() {
         btn_Have_an_account = findViewById(R.id.btn_Have_an_account)
         btn_SignUpGO = findViewById(R.id.btn_SignUpGO)
 
-        fname = findViewById(R.id.fname)
+        fullname = findViewById(R.id.fullname)
         username = findViewById(R.id.username)
         email = findViewById(R.id.email)
-        phoneNo = findViewById(R.id.phoneNo)
+        phone = findViewById(R.id.phone)
         password = findViewById(R.id.password)
 
 
@@ -47,14 +47,15 @@ class SignUpActivity : AppCompatActivity() {
         btn_SignUpGO.setOnClickListener {
 
 
-            val fname = fname.text.toString()
+            val fullname = fullname.text.toString()
             val username = username.text.toString()
             val email = email.text.toString()
-            val phoneNo = phoneNo.text.toString()
+            val phone = phone.text.toString()
             val password = password.text.toString()
 
             //code to insert in db
-            val user = UserTable(fullName = fname,email = email,userName = username,phone = phoneNo,password = password)
+            val user = UserTable(fullname = fullname,email = email,username = username,
+                    phone = phone,password = password)
             CoroutineScope(Dispatchers.IO).launch {
                 try {
                     val userRepository = UserRepository()
@@ -63,7 +64,7 @@ class SignUpActivity : AppCompatActivity() {
                     {
                         withContext(Main)
                         {
-                            Toast.makeText(this@SignUpActivity, "${response.message}", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@SignUpActivity, "register bhayo", Toast.LENGTH_SHORT).show()
                             val intent = Intent(this@SignUpActivity, LoginActivity::class.java )
                             startActivity(intent)
                         }

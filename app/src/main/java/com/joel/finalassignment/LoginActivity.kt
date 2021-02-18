@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
 import com.google.android.material.textfield.TextInputEditText
 import com.joel.finalassignment.api.ServiceBuilder
@@ -22,14 +23,14 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var btn_newRegister: Button
     private lateinit var btn_loginGo: Button
-    private lateinit var username : TextInputEditText
-    private lateinit var password : TextInputEditText
+    private lateinit var username: EditText
+    private lateinit var password: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN)
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_login)
 
         btn_newRegister = findViewById(R.id.btn_newRegister)
@@ -40,45 +41,34 @@ class LoginActivity : AppCompatActivity() {
         btn_newRegister.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
-            }
-        btn_loginGo.setOnClickListener{
-            val username12 = username.text.toString()
-            val password12 = password.text.toString()
+        }
+        btn_loginGo.setOnClickListener {
+
             CoroutineScope(Dispatchers.IO).launch {
+try{
+    val username12 = username.text.toString()
+    val password12 = password.text.toString()
+    val ur = UserRepository()
+    val response = ur.loginUser(username12,password12)
+    if(response.success==true)
+    {
+        startActivity(Intent(this@LoginActivity,DashboardActivity::class.java))
+    }
+    else{
+        withContext(Main){
+            Toast.makeText(this@LoginActivity, "Invalid Cerdentials", Toast.LENGTH_SHORT).show()
+        }
+    }
 
-                try {
-                    val userRepository = UserRepository()
-                    val response = userRepository.loginUser(username12,password12)
-                    if(response.success == true)
-                    {
-
-                            ServiceBuilder.token = "Bearer "+response.token
-                            var getPref = getSharedPreferences("pref", Context.MODE_PRIVATE)
-                            var editor = getPref.edit()
-                            editor.putString("username",username12)
-                            editor.putString("password",password12)
-                            editor.apply()
 
 
-                        val intent = Intent(this@LoginActivity,DashboardActivity::class.java)
-                        startActivity(intent)
-                    }
-                    else
-                    {
-                        withContext(Main)
-                        {
-                            Toast.makeText(this@LoginActivity, "Invalid Credentials!!${username12}", Toast.LENGTH_SHORT).show()
-                        }
-
-                    }
-                }
-                catch (err:Exception)
-                {
-                    withContext(Main)
-                    {
-                        Toast.makeText(this@LoginActivity, "${err}", Toast.LENGTH_SHORT).show()
-
-                    }
+}
+catch (ex:Exception)
+{
+    withContext(Dispatchers.Main){
+        Toast.makeText(this@LoginActivity, "Invalid ${ex}", Toast.LENGTH_SHORT).show()
+    }
+}
                 }
 
 
@@ -86,4 +76,3 @@ class LoginActivity : AppCompatActivity() {
 
         }
     }
-}

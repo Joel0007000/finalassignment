@@ -22,7 +22,7 @@ abstract class APIRequest() {
                 message.append("\n")
             }
             message.append("Error code : ${response.code()}")
-
+            println(error)
             throw IOException(message.toString())
         }
     }
