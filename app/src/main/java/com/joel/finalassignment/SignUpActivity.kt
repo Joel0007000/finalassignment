@@ -16,6 +16,7 @@ import com.joel.finalassignment.repository.UserRepository
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.Main
 import java.lang.Exception
+
 @Suppress("DEPRECATION")
 class SignUpActivity : AppCompatActivity() {
 
@@ -54,32 +55,27 @@ class SignUpActivity : AppCompatActivity() {
             val password = password.text.toString()
 
             //code to insert in db
-            val user = UserTable(fullname = fullname,email = email,username = username,
-                    phone = phone,password = password)
+            val user = UserTable(fullname = fullname, email = email, username = username,
+                    phone = phone, password = password)
             CoroutineScope(Dispatchers.IO).launch {
                 try {
                     val userRepository = UserRepository()
                     val response = userRepository.registerUser(user)
-                    if(response.success == true)
-                    {
+                    if (response.success == true) {
                         withContext(Main)
                         {
                             Toast.makeText(this@SignUpActivity, "register bhayo", Toast.LENGTH_SHORT).show()
-                            val intent = Intent(this@SignUpActivity, LoginActivity::class.java )
+                            val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
                             startActivity(intent)
                         }
 
-                    }
-                    else
-                    {
+                    } else {
                         withContext(Main)
                         {
                             Toast.makeText(this@SignUpActivity, "${response.message}", Toast.LENGTH_SHORT).show()
                         }
                     }
-                }
-                catch (err:Exception)
-                {
+                } catch (err: Exception) {
                     withContext(Main)
                     {
                         Toast.makeText(this@SignUpActivity, "${err}", Toast.LENGTH_SHORT).show()
@@ -88,7 +84,7 @@ class SignUpActivity : AppCompatActivity() {
                 }
 
 
-        }
+            }
         }
     }
 }

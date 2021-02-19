@@ -45,34 +45,29 @@ class LoginActivity : AppCompatActivity() {
         btn_loginGo.setOnClickListener {
 
             CoroutineScope(Dispatchers.IO).launch {
-try{
-    val username12 = username.text.toString()
-    val password12 = password.text.toString()
-    val ur = UserRepository()
-    val response = ur.loginUser(username12,password12)
-    if(response.success==true)
-    {
-        startActivity(Intent(this@LoginActivity,DashboardActivity::class.java))
-    }
-    else{
-        withContext(Main){
-            Toast.makeText(this@LoginActivity, "Invalid Cerdentials", Toast.LENGTH_SHORT).show()
-        }
-    }
+                try {
+                    val username12 = username.text.toString()
+                    val password12 = password.text.toString()
+                    val ur = UserRepository()
+                    val response = ur.loginUser(username12, password12)
+                    if (response.success == true) {
+                        startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
+                    } else {
+                        withContext(Main) {
+                            Toast.makeText(this@LoginActivity, "Invalid Cerdentials", Toast.LENGTH_SHORT).show()
+                        }
+                    }
 
 
-
-}
-catch (ex:Exception)
-{
-    withContext(Dispatchers.Main){
-        Toast.makeText(this@LoginActivity, "Invalid ${ex}", Toast.LENGTH_SHORT).show()
-    }
-}
+                } catch (ex: Exception) {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(this@LoginActivity, "Invalid ${ex}", Toast.LENGTH_SHORT).show()
+                    }
                 }
-
-
             }
 
+            //this is joel dangol
         }
+
     }
+}
