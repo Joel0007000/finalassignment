@@ -59,7 +59,10 @@ class LoginActivity : AppCompatActivity() {
                     }
 
 
-
+                } catch (ex: Exception) {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(this@LoginActivity, "Invalid ${ex}", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
 
