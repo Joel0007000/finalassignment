@@ -66,7 +66,6 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
 
-            //this is joel dangol
         }
 
     }
