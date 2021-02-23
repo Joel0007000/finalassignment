@@ -70,7 +70,10 @@ class SignUpActivity : AppCompatActivity() {
                         }
 
                     } else {
-
+                        withContext(Main)
+                        {
+                            Toast.makeText(this@SignUpActivity, "${response.message}", Toast.LENGTH_SHORT).show()
+                        }
                     }
                 } catch (err: Exception) {
                     withContext(Main)
