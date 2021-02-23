@@ -77,10 +77,7 @@ class SignUpActivity : AppCompatActivity() {
                     }
                 } catch (err: Exception) {
                     withContext(Main)
-                    {
-                        Toast.makeText(this@SignUpActivity, "${err}", Toast.LENGTH_SHORT).show()
 
-                    }
                 }
 
 
