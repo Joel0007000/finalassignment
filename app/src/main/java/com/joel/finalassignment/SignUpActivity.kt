@@ -37,11 +37,7 @@ class SignUpActivity : AppCompatActivity() {
         btn_Have_an_account = findViewById(R.id.btn_Have_an_account)
         btn_SignUpGO = findViewById(R.id.btn_SignUpGO)
 
-        fullname = findViewById(R.id.fullname)
-        username = findViewById(R.id.username)
-        email = findViewById(R.id.email)
-        phone = findViewById(R.id.phone)
-        password = findViewById(R.id.password)
+
 
 
 
