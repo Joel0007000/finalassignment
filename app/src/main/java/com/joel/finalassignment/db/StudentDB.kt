@@ -5,16 +5,19 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.joel.finalassignment.dao.UserDAO
+import com.joel.finalassignment.entity.Product
 import com.joel.finalassignment.entity.User
 
 @Database(
-        entities = [(User::class)],
-        version = 2
+        entities = [User::class,Product::class],
+        version = 2,
+    exportSchema = false
 )
 
 abstract class StudentDB : RoomDatabase(){
 
     abstract fun getUserDAO() : UserDAO
+    abstract fun getProductDAO():ProductDAO
 
     companion object{
         @Volatile

@@ -4,7 +4,10 @@ import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
+import android.widget.FrameLayout
 import androidx.core.app.ActivityCompat
+import androidx.fragment.app.Fragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class DashboardActivity : AppCompatActivity() {
     private val permissions = arrayOf( android.Manifest.permission.CAMERA,
@@ -21,6 +24,28 @@ class DashboardActivity : AppCompatActivity() {
         // Check for permission
         if (!hasPermission()) {
             requestPermission()
+        }
+        val navView: BottomNavigationView = findViewById(R.id.nav_view)
+
+        currentfragment(MainFragment())
+        navView.setOnNavigationItemSelectedListener {
+            when(it.itemId)
+            {R.id.navigation_dashboard->
+            {
+                currentfragment(MainFragment())
+            }
+            }
+
+            true
+        }
+
+    }
+    fun currentfragment( fragment: Fragment)
+    {
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.frame,fragment)
+            addToBackStack(null)
+            commit()
         }
     }
 
