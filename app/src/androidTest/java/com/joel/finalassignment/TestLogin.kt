@@ -16,5 +16,18 @@ class TestLogin {
     @get: Rule
     val testRule=ActivityScenarioRule(LoginActivity::class.java)
 
+    @Test
+    fun testLoginUI(){
+        onView(withId(R.id.username)).perform(typeText("abc"))
+        onView(withId(R.id.password)).perform(typeText("abc12345"))
 
+        closeSoftKeyboard()
+
+        onView(withId(R.id.btn_loginGo)).perform(click())
+
+        Thread.sleep(2000)
+
+        onView(withId(R.id.nav_view)).check(matches(isDisplayed()))
+
+    }
 }
