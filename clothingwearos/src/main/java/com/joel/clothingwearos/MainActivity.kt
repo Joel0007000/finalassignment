@@ -49,16 +49,7 @@ class MainActivity : WearableActivity(),View.OnClickListener {
                     val repo = WearRepository()
                     val response = repo.loginUser(etUsername.text.toString(),etPassword.text.toString())
                     if(response.success == true)
-                    {
 
-                        ServiceBuilder.token = "Bearer "+response.token
-
-                        withContext(Dispatchers.Main)
-                        {
-                            val intent = Intent(this@MainActivity,DashboardActivity::class.java)
-                            startActivity(intent)
-                            finish()
-                        }
                     }
                     else
                     {
