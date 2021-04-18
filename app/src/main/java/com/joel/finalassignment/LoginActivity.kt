@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.google.android.material.textfield.TextInputEditText
+import com.joel.finalassignment.Notification.NotificationSender
 import com.joel.finalassignment.api.ServiceBuilder
 import com.joel.finalassignment.db.StudentDB
 import com.joel.finalassignment.repository.UserRepository
@@ -51,7 +52,13 @@ class LoginActivity : AppCompatActivity() {
                     val ur = UserRepository()
                     val response = ur.loginUser(username12, password12)
                     if (response.success == true) {
-                        startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
+                        NotificationSender(this@LoginActivity,"Logged In Successfully","").createHighPriority()
+                        var instance = StudentDB.getInstance(this@LoginActivity).getUserDAO()
+                        instance.delete()
+                        instance.userSignUp(response.data!!)
+                        saveToSharedPref()
+                        ServiceBuilder.token = "Bearer "+response.token
+                        startActivity(Intent(this@LoginActivity, MainActivity2::class.java))
                     } else {
                         withContext(Main) {
                             Toast.makeText(this@LoginActivity, "Invalid Cerdentials", Toast.LENGTH_SHORT).show()
@@ -68,5 +75,14 @@ class LoginActivity : AppCompatActivity() {
 
         }
 
+    }
+
+    private fun saveToSharedPref()
+    {
+        var pref = getSharedPreferences("credentials",Context.MODE_PRIVATE)
+        var editor = pref.edit()
+        editor.putString("username",username.text.toString())
+        editor.putString("password",password.text.toString())
+        editor.apply()
     }
 }

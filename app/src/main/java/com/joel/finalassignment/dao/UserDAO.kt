@@ -12,6 +12,9 @@ interface UserDAO {
     @Insert
     suspend fun userSignUp (user: User)
 
-    @Query("select * from User where username = (:un) and password = (:pw)")
-    suspend fun authentication(un:String,pw:String):User
+    @Query("select * from User")
+    suspend fun authentication():User
+
+    @Query("delete from User")
+    suspend fun delete()
 }

@@ -25,14 +25,20 @@ class UserRepository():APIRequest() {
             userService.loginUser(username,password)
         }
     }
-    suspend fun getProduct():ProductResponse{
+
+    suspend fun userEdit(fln:String,em:String,un:String,ad:String):LoginResponse
+    {
         return apiRequest {
-            userService.get()
+            userService.editDetails(ServiceBuilder.token!!,fln,em,un,ad)
         }
     }
-    suspend fun uploadImage(id:String,body:MultipartBody.Part):ImageResponse{
-        return apiRequest {
-            userService.upload(id,body)
+
+
+    suspend fun editImage(profileImg: MultipartBody.Part):LoginResponse
+    {
+        return  apiRequest {
+            userService.changeImage(ServiceBuilder.token!!,profileImg)
         }
     }
+
 }

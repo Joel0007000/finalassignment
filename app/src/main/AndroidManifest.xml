@@ -22,9 +22,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FinalAssignment"
         android:usesCleartextTraffic="true">
+        <activity android:name=".SingleProductActivity"></activity>
         <activity
             android:name=".MainActivity2"
-            android:label="@string/title_activity_main2"></activity>
+            android:label="@string/title_activity_main2" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -40,21 +41,15 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".DashboardActivity" >
-
-        </activity>
-        <activity android:name=".SignUpActivity" >
+        <activity android:name=".DashboardActivity"></activity>
+        <activity android:name=".SignUpActivity"></activity>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".LoginActivity" />
-
-        <activity android:name=".MainActivity">
-
-
         </activity>
 
         <meta-data

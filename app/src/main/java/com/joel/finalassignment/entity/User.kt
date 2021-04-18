@@ -11,5 +11,6 @@ var fname: String? = null,
 var username: String? = null,
 var email: String? = null,
 var phoneNo:  String? = null,
-var password: String? = null
+var password: String? = null,
+    var Image:String?=null
 )

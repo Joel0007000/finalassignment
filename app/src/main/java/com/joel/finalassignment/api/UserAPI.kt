@@ -14,19 +14,29 @@ interface UserAPI {
     suspend fun registerUser(@Body user: UserTable): Response<ServerResponse>
 
     @FormUrlEncoded
-    @POST("/login")
+    @POST("account/login")
     suspend fun loginUser(
         @Field("username") username: String,
         @Field("password") password: String
     ):Response<LoginResponse>
 
-    @GET("/product/show")
-    suspend fun get():Response<ProductResponse>
+    @FormUrlEncoded
+    @POST("update/details")
+    suspend fun editDetails(
+        @Header("Authorization") token:String,
+        @Field("name") fn:String,
 
-@Multipart
-    @PUT("/user/photo/{id}")
-    suspend fun upload(
-        @Path("id") id:String,
-        @Part body: MultipartBody.Part
-    ):Response<ImageResponse>
+        @Field("email") em:String,
+        @Field("username") un:String,
+        @Field("address") ad:String,
+    ):Response<LoginResponse>
+
+    @Multipart
+    @PUT("change/profilePicture")
+    suspend fun changeImage(
+        @Header("Authorization") token:String,
+        @Part profileImg: MultipartBody.Part
+    ):Response<LoginResponse>
+
+
 }

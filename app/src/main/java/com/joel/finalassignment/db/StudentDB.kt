@@ -10,7 +10,7 @@ import com.joel.finalassignment.entity.User
 
 @Database(
         entities = [User::class,Product::class],
-        version = 2,
+        version = 4,
     exportSchema = false
 )
 

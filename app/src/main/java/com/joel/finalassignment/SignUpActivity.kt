@@ -200,17 +200,16 @@ class SignUpActivity : AppCompatActivity() {
             var body = MultipartBody.Part.createFormData("file",file.name,reqFile)
             CoroutineScope(Dispatchers.IO).launch {
                 try{
-                    val ur = UserRepository()
-                    val response = ur.uploadImage(id,body)
-                    if(response.success==true)
-                    {
 
-
-                        withContext(Dispatchers.Main){
-                            Toast.makeText(this@SignUpActivity, "Add in Room databse", Toast.LENGTH_SHORT).show()
-                        }
-
-                    }
+//                    if(response.success==true)
+//                    {
+//
+//
+//                        withContext(Dispatchers.Main){
+//                            Toast.makeText(this@SignUpActivity, "Add in Room databse", Toast.LENGTH_SHORT).show()
+//                        }
+//
+//                    }
 
                 }
                 catch(ex:Exception)

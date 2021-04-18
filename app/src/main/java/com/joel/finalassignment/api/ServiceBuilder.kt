@@ -6,6 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ServiceBuilder {
      val BASE_URL = "http://10.0.2.2:90/"
+//     val BASE_URL = "http://localhost:90/"
     var token:String?=null
 
     val okhttp = OkHttpClient.Builder()
@@ -17,5 +18,10 @@ object ServiceBuilder {
     fun <T> retroService(service:Class<T>):T
     {
         return retrofitService.create(service)
+    }
+
+    fun loadImgPath(): String {
+        val arr = BASE_URL.split("/").toTypedArray()
+        return arr[0] + "/" + arr[1] + arr[2] + "/"
     }
 }
