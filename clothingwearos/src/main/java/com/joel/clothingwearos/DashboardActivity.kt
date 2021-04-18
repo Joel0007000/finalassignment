@@ -43,17 +43,7 @@ class DashboardActivity : WearableActivity() {
             }
             catch (ex: Exception)
             {
-                withContext(Dispatchers.Main)
-                {
-                    val snk = Snackbar.make(tvCart,"${ex.toString()}", Snackbar.LENGTH_LONG)
-                    snk.setAction("Cancel", View.OnClickListener {
-                        snk.dismiss()
-                    })
-                    snk.show()
-                    println(ex.printStackTrace())
-                }
-            }
-        }
+
         setAmbientEnabled()
     }
 }
